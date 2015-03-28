@@ -27,7 +27,8 @@ ExternalProject_Add(
     glm
     URL https://github.com/g-truc/glm/archive/0.9.6.3.zip
     URL_HASH SHA1=b2b12e7484549a6b124a5516c1cf8bc6084e1be2
-    BUILD_COMMAND ""
+    CMAKE_ARGS
+        -DCMAKE_INSTALL_PREFIX=${3RDPARTY_PATH}
 )
 
 ExternalProject_Add(
@@ -40,7 +41,7 @@ ExternalProject_Add(
 
 ExternalProject_Add(
     maszyna
-    DEPENDS glbinding glfw
+    DEPENDS glbinding glfw glm
     SOURCE_DIR ${CMAKE_SOURCE_DIR}/client
     CMAKE_ARGS
         -DCLIENT_3RDPARTY_PATH=${3RDPARTY_PATH}
