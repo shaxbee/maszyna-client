@@ -1,0 +1,65 @@
+namespace eu07;
+
+struct Vec3f {
+  x: float;
+  y: float;
+  z: float;
+}
+
+struct Quat {
+  x: float;
+  y: float;
+  z: float;
+  w: float;
+}
+
+table Texture {
+  name: string;
+}
+
+table Material {
+  geometryShader: string;
+  fragmentShader: string;
+  numTextures: ubyte;
+}
+
+table MaterialInstance {
+  material: uint;
+  textures: [uint];
+  uniforms: [ubyte];
+}
+
+enum NormalFormat: byte { DISABLED = 0, FLOAT = 1, INT_2_10_10_10 = 2 }
+enum TexCoordFormat: byte { FLOAT = 0, HALF_FLOAT = 2, SHORT = 3, BYTE = 4 }
+
+table VertexFormat {
+  normal: NormalFormat;
+  texCoord: TexCoordFormat;
+}
+
+table Header {
+  version: uint;
+  shaders: [string]
+  materials: [Material];
+  textures: [Texture];
+}
+
+table Mesh {
+  materialInstance: uint; // material instance index
+  format: VertexFormat;
+  uniforms: [ubyte];
+  data: [ubyte]; // vertex data
+  position: Vec3f;
+  orientation: Quat;
+}
+
+table InstancedMesh {
+  mesh: Mesh;
+  count: uint;
+}
+
+table AnimatedMesh {
+  mesh: Mesh;
+}
+
+union AnyMesh { Mesh, InstancedMesh, AnimatedMesh }
