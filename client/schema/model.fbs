@@ -39,7 +39,7 @@ table VertexFormat {
 
 table Header {
   version: uint;
-  shaders: [string]
+  shaders: [string];
   materials: [Material];
   textures: [Texture];
 }

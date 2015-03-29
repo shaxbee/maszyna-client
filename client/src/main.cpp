@@ -23,6 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <vector>
 
+#include "schema/model_generated.h"
+
 using namespace gl33core;
 
 const int GLFW_TRUE = static_cast<int>(GL_TRUE);
