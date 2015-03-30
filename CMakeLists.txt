@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.11)
+cmake_minimum_required(VERSION 2.8.12)
 include(ExternalProject)
 
 set(3RDPARTY_PATH ${CMAKE_BINARY_DIR}/3rdparty)
