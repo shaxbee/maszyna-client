@@ -23,7 +23,25 @@ endif()
 
 compile_flatbuffers_schema_to_cpp(schema/model.fbs)
 
-add_executable(maszyna src/main.cpp schema/model_generated.h)
+include_directories(include)
+
+set(INCLUDE_MASZYNA_DIAGNOSTICS
+    include/Maszyna.Diagnostics/Trace.hxx
+)
+source_group("Maszyna.Diagnostics" FILES ${INCLUDE_MASZYNA_DIAGNOSTICS})
+
+set(SOURCE_MASZYNA_DIAGNOSTICS
+    src/Maszyna.Diagnostics/Trace.cxx
+)
+source_group("Maszyna.Diagnostics" FILES ${SOURCE_MASZYNA_DIAGNOSTICS})
+
+add_executable(maszyna
+    src/main.cpp
+    schema/model_generated.h
+    ${INCLUDE_MASZYNA_DIAGNOSTICS}
+    ${SOURCE_MASZYNA_DIAGNOSTICS}
+)
+
 target_include_directories(maszyna PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(maszyna ${GLBINDING_LIBRARIES} glfw glm flatbuffers)
 target_compile_definitions(maszyna PRIVATE -DGLBINDING_STATIC -DGLFW_INCLUDE_NONE)
