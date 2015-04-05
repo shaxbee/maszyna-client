@@ -1,8 +1,7 @@
-#include <Maszyna.Diagnostics/Trace.hxx>
+#include <Maszyna.Diagnostics/Trace.h>
 #include <cstdio>
 #include <cstdarg>
 #include <cstdlib>
-#include <Windows.h>
 
 namespace Maszyna
 {
